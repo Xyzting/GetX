@@ -2,7 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
+  final className = "KELAS".obs;
+
   TextEditingController namacontroller = TextEditingController();
+  TextEditingController kelas = TextEditingController();
+  TextEditingController namaMapel = TextEditingController();
+  TextEditingController jnsMapel = TextEditingController();
+
+  RxList<String> ListSiswa = RxList<String>([]);
+  RxMap<String, String> ListMapel = RxMap<String, String>();
 //Reactive state
   // RxString nama = RxString('');
   // Rx<String> nama = Rx<String>('');
@@ -17,6 +25,14 @@ class HomeController extends GetxController {
 
 //simple state
   String nama = '';
+
+  void changeClass(String name){
+    className.value = name;
+  }
+
+  void addListSiswa(String name){
+    ListSiswa.add(name);
+  }
 
   void gantiNilai(String nm) {
     nama = nm;
@@ -37,5 +53,9 @@ class HomeController extends GetxController {
 
   void decreaseX(){
     x.value--;
+  }
+
+   void addMapel(String namaMapel, String jnsMapel){
+    ListMapel[namaMapel] = jnsMapel;
   }
 }

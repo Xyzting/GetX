@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
-class ListScreen extends StatelessWidget {
-  const ListScreen({super.key});
+class ClassScreen extends StatelessWidget {
+  const ClassScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,35 +15,32 @@ class ListScreen extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              controller: hc.namacontroller,
+              controller: hc.kelas,
               decoration: const InputDecoration(  
-                labelText: "Nama",
+                labelText: "Class Name",
               ),
             ),
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
-              onPressed: (() => hc.addListSiswa(hc.namacontroller.text)), 
+              onPressed: () {
+               hc.changeClass(hc.kelas.text);
+              }, 
               child: const Text("Confirm!")
             ),
             const SizedBox(
               height: 20,
             ),
-            Expanded(
-              child: Obx(() => ListView.builder(
-                  itemCount: hc.ListSiswa.length,
-                  itemBuilder: (context, index) => (
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(hc.ListSiswa.value[index])
-                      ],
-                    )
-                  ),
+              Obx( 
+              () => Text(
+                hc.className.value,
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.black
                 ),
               ),
-            )
+            ),
           ],
         )
       ),
